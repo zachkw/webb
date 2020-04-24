@@ -6,5 +6,7 @@ const app = express()
 const PORT = process.env.PORT || 3000;
 
 app.use('/insta', insta);
+app.use('/google', google);
+
 
 app.listen(PORT);
