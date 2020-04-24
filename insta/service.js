@@ -17,7 +17,7 @@ const hashtagScrape = async(name) => {
 }
 
 const location = async(name) => {
-  let res = await ig.scrapeLocation(2294257314189089836);
+  let res = await ig.scrapeLocation(123);
   return res;
 }
 

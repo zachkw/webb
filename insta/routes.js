@@ -28,7 +28,8 @@ router.get('/hashtag/:hashtag/open', async (req, res) => {
   try {
     const result = await service.hashtagScrape(req.params.hashtag);
     res.send(result);
-  } catch(e) {
+  } 
+  catch(e) {
     throw e;
   }
 });
