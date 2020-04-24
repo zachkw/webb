@@ -19,4 +19,14 @@ exports.googleTrendsTitles = async(location, date) => {
     const mappedTitles = firstTitle.trendingSearches.map(googleFeed => googleFeed.title.query);
     return mappedTitles;
 }
+
+exports.googleRealtimeTrends = async(location) => {
+    let res = await googleTrends.realTimeTrends({
+        geo: location,
+        category: 'h',
+    });
+    const resJson = JSON.parse(res);
+    const trendingStories = resJson.storySummaries.trendingStories.map(stories => stories.articles.map(articles => articles.articleTitle));
+    return trendingStories;
+}
   
