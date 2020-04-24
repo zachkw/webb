@@ -14,4 +14,14 @@ router.get('/trends/location/:location', async (req, res) => {
   }
 });
 
+router.get('/trends/titles/location/:location', async (req, res) => {
+    try {
+        const result = await service.googleTrendsTitles(req.params.location, req.query.date);
+        res.send(result);
+    } 
+    catch(e) {
+        throw e;
+    }
+});
+
 module.exports = router

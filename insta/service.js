@@ -7,7 +7,7 @@ exports.handleScrape = async(handle) => {
 
 exports.handleTextScrape = async(handle) => {
   let res = await ig.scrapeUserPage(handle);  
-  const mappedText = res.medias.map((instagramObject) => instagramObject.text);
+  const mappedText = res.medias.map(instagramObject => instagramObject.text);
   return mappedText;
 }
 
