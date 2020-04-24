@@ -14,14 +14,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cookie-session": "^2.0.0-beta.3",
     "express": "^4.16.4",
     "instagram-scraping": "^1.0.13",
-    "mongoose": "^5.3.8",
-    "mongose": "0.0.2-security",
     "node-modules": "^1.0.1",
-    "nodemon": "^1.18.5",
-    "passport": "^0.4.0",
-    "passport-google-oauth20": "^1.0.0"
+    "nodemon": "^1.18.5"
   }
 }
