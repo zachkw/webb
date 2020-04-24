@@ -16,6 +16,11 @@ const hashtagScrape = async(name) => {
   return res;
 }
 
+const location = async(name) => {
+  let res = await ig.scrapeLocation(2294257314189089836);
+  return res;
+}
+
 
 exports.handleTextScrape = handleTextScrape;
 exports.handleScrape = handleScrape;

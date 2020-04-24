@@ -34,5 +34,4 @@ router.get('/hashtag/:hashtag/open', async (req, res) => {
 });
 
 
-
 module.exports = router
