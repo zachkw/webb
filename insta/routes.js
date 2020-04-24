@@ -1,7 +1,7 @@
 var express = require('express')
 var router = express.Router()
 var service = require('./service')
-  
+
 router.get('/', (req, res) => res.send('Hello IG World!'))
   
 router.get('/handle/:handle/open', async (req, res) => {
