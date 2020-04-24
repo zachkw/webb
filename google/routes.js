@@ -13,3 +13,5 @@ router.get('/trends', async (req, res) => {
     throw e;
   }
 });
+
+module.exports = router
