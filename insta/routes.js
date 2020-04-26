@@ -25,6 +25,17 @@ router.get('/handle/:handle/text', async (req, res) => {
 });
 
 
+router.get('/handle/:handle/follower_count', async (req, res) => {
+  try {
+    const result = await service.handleFollowersScrape(req.params.handle);
+    res.send(JSON.stringify(result));
+  } 
+  catch(e) {
+    throw e;
+  }
+});
+
+
 router.get('/hashtag/:hashtag/open', async (req, res) => {
   try {
     const result = await service.hashtagScrape(req.params.hashtag);
@@ -34,6 +45,8 @@ router.get('/hashtag/:hashtag/open', async (req, res) => {
     res.send();
   }
 });
+
+
 
 
 module.exports = router

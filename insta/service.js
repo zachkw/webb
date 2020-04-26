@@ -11,6 +11,15 @@ exports.handleTextScrape = async(handle) => {
   return mappedText;
 }
 
+exports.handleFollowersScrape = async(handle) => {
+  try {
+    let res = await ig.scrapeUserPage(handle);  
+    return res.user.edge_followed_by.count;
+  } catch(e) {
+    return 0;
+  }
+}
+
 exports.hashtagScrape = async(name) => {
   let res = await ig.scrapeTag(name);
   return res;
