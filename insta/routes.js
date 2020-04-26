@@ -10,7 +10,7 @@ router.get('/handle/:handle/open', async (req, res) => {
     res.send(result);
   } 
   catch(e) {
-    throw e;
+    res.send();
   }
 });
 
@@ -20,7 +20,7 @@ router.get('/handle/:handle/text', async (req, res) => {
     res.send(result);
   }
   catch(e) {
-    throw e;
+    res.send();
   }
 });
 
@@ -31,7 +31,7 @@ router.get('/hashtag/:hashtag/open', async (req, res) => {
     res.send(result);
   } 
   catch(e) {
-    throw e;
+    res.send();
   }
 });
 
