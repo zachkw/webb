@@ -70,6 +70,16 @@ router.get('/densecap/:handle/medias/:amount', async (req, res) => {
 router.get('/anime/:handle/profile', async (req, res) => {
   try {
     const result = await service.animeConvertProfile(req.params.handle, req.params.amount);
+    res.send(result);
+  } catch(e) {
+    res.send();
+  }
+})
+
+router.get('/anime/:handle/medias/:amount', async (req, res) => {
+  try {
+    const result = await service.animeConvertMedias(req.params.handle, req.params.amount);
+    res.send(result);
   } catch(e) {
     res.send();
   }

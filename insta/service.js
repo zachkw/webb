@@ -1,5 +1,6 @@
 var ig = require('instagram-scraping');
 var rwDenseCap = require('../runwayML/densecap');
+var rwAnimeConv = require('../runwayML/animeconvert');
 
 exports.handleScrape = async(handle) => {
   let res = await ig.scrapeUserPage(handle);
@@ -43,14 +44,14 @@ exports.denseCapMedia = async(name, number) => {
   return res;
 }
 
-exports.denseCapMedias = async(name, amount) => {
+exports.animeConvertMedias = async(name, amount) => {
   let igRes = await ig.scrapeUserPage(name);
   const mappedImageUrls = igRes.medias.map(instagramObject => instagramObject.display_url);
-  let res = await rwDenseCap.runInstagramImages(mappedImageUrls, amount);
+  let res = await rwAnimeConv.runInstagramImages(mappedImageUrls, amount);
   return res;
 }
 
 exports.animeConvertProfile = async(name) => {
   let igRes = await ig.scrapeUserPage(name);
-  
+  return await rwAnimeConv.runInstagramImage(igRes.user.profile_pic_url); 
 }
