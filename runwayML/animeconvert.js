@@ -27,7 +27,6 @@ const runAnimeConvert = async(image64) => {
 
     const inputs = {
         "image": image64,
-        "max_detections": 10,
     };
 
     return fetch("https://webb-anime.hosted-models.runwayml.cloud/v1/query", {
