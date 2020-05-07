@@ -46,7 +46,14 @@ router.get('/hashtag/:hashtag/open', async (req, res) => {
   }
 });
 
-
-
+router.get('/densecap/:handle/profile', async (req, res) => {
+  try {
+    const result = await service.denseCapScrape(req.params.handle);
+    res.send(result);
+  } 
+  catch(e) {
+    res.send();
+  }
+});
 
 module.exports = router

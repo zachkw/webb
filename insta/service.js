@@ -1,4 +1,5 @@
 var ig = require('instagram-scraping');
+var rwDenseCap = require('../runwayML/densecap');
 
 exports.handleScrape = async(handle) => {
   let res = await ig.scrapeUserPage(handle);
@@ -27,5 +28,16 @@ exports.hashtagScrape = async(name) => {
 
 exports.location = async(name) => {
   let res = await ig.scrapeLocation(123);
+  return res;
+}
+
+exports.denseCapScrape = async(name) => {
+  let igRes = await ig.scrapeUserPage(name);  
+  const profilePictureUrl = igRes.user.profile_pic_url;
+
+  const mappedImageUrls = igRes.medias.map(instagramObject => instagramObject.display_url);
+  mappedImageUrls.unshift(profilePictureUrl);
+
+  let res = await rwDenseCap.runInstagramImage(profilePictureUrl); 
   return res;
 }
