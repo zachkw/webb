@@ -67,4 +67,12 @@ router.get('/densecap/:handle/medias/:amount', async (req, res) => {
   }
 })
 
+router.get('/anime/:handle/profile', async (req, res) => {
+  try {
+    const result = await service.animeConvertProfile(req.params.handle, req.params.amount);
+  } catch(e) {
+    res.send();
+  }
+})
+
 module.exports = router

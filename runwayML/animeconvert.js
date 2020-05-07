@@ -30,12 +30,12 @@ const runDenseCap = async(image64) => {
         "max_detections": 10,
     };
 
-    return fetch("https://webb-ig-vision.hosted-models.runwayml.cloud/v1/query", {
+    return fetch("https://webb-anime.hosted-models.runwayml.cloud/v1/query", {
         method: "POST",
         headers: {
-          "Accept": "application/json",
-          "Authorization": "Bearer MSlbM+m+D9zoAWo3eRtYGg==",
-          "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": "Bearer QSN7a4IXIbAxCXL8vgbeuA==",
+            "Content-Type": "application/json",
         },
     body: JSON.stringify(inputs)
     })
@@ -45,4 +45,3 @@ const runDenseCap = async(image64) => {
         return outputs.classes;
     });
 }
-

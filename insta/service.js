@@ -49,3 +49,8 @@ exports.denseCapMedias = async(name, amount) => {
   let res = await rwDenseCap.runInstagramImages(mappedImageUrls, amount);
   return res;
 }
+
+exports.animeConvertProfile = async(name) => {
+  let igRes = await ig.scrapeUserPage(name);
+  
+}
