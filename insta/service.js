@@ -31,13 +31,21 @@ exports.location = async(name) => {
   return res;
 }
 
-exports.denseCapScrape = async(name) => {
+exports.denseCapProfile = async(name) => {
   let igRes = await ig.scrapeUserPage(name);  
-  const profilePictureUrl = igRes.user.profile_pic_url;
+  return await rwDenseCap.runInstagramImage(igRes.user.profile_pic_url); 
+}
 
+exports.denseCapMedia = async(name, number) => {
+  let igRes = await ig.scrapeUserPage(name);  
+  const imageUrl = igRes.medias.map(instagramObject => instagramObject.display_url)[number];
+  let res = await rwDenseCap.runInstagramImage(imageUrl); 
+  return res;
+}
+
+exports.denseCapMedias = async(name, amount) => {
+  let igRes = await ig.scrapeUserPage(name);
   const mappedImageUrls = igRes.medias.map(instagramObject => instagramObject.display_url);
-  mappedImageUrls.unshift(profilePictureUrl);
-
-  let res = await rwDenseCap.runInstagramImage(profilePictureUrl); 
+  let res = await rwDenseCap.runInstagramImages(mappedImageUrls, amount);
   return res;
 }

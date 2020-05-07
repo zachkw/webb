@@ -3,12 +3,24 @@ require('isomorphic-fetch');
 const imageToBase64 = require('image-to-base64');
 
 exports.runInstagramImage = async(imageLink) => {
-    return imageToBase64(imageLink)
-        .then(async (image64) => {
+    return await imageToBase64(imageLink)
+        .then(async(image64) => {
             let output = await runDenseCap(image64);
-            console.log("OP: " + output);
             return output;
     });
+}
+
+exports.runInstagramImages = async(imageLinks, amount) => {
+    var result = [];
+    for(i = 0; i < amount; i++) {
+        let text = await imageToBase64(imageLinks[i])
+        .then(async (image64) => {
+            let output = await runDenseCap(image64);
+            return output;
+        }); 
+        result.push(text);  
+    }
+    return result;
 }
 
 const runDenseCap = async(image64) => {
@@ -30,7 +42,6 @@ const runDenseCap = async(image64) => {
     .then(response => response.json())
     .then(outputs => {
         const { boxes, classes, scores } = outputs;
-        console.log("OPC" + outputs.classes);
         return outputs.classes;
     });
 }
