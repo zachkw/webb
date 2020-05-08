@@ -8,6 +8,16 @@ router.get('/deaths', async (req, res) => {
     res.send(result);
 });
 
+router.get('/deaths/72/total', async(req,res) => {
+  try {
+    const data = await csv().fromFile(path.join(__dirname, 'gun_death_total.csv'));
+    const result = totals(data);
+    res.send(JSON.stringify(result));
+  } catch(e) {
+    throw e;
+  }
+})
+
 router.get('/deaths/24/total', async(req, res) => {
   try {
     const data = await csv().fromFile(path.join(__dirname, 'gun_death_total.csv'));
@@ -22,24 +32,30 @@ router.get('/deaths/24/total', async(req, res) => {
       i++;
     }
     const data24 = data.filter(report => report['Incident Date'] == date);
-    let data24Length = data24.length;
-
-    i=0;
-    let data24DeathTotal = 0;
-    let data24InjuryTotal = 0;
-    while(i < data24.length) {
-      data24DeathTotal += parseInt(data24[i]['# Killed']);
-      data24InjuryTotal += parseInt(data24[i]['# Injured']);
-      i++;
-    }
-
-    const result = { "date": date, "totalReports": data24Length, "totalKilled":data24DeathTotal, "totalInjured": data24InjuryTotal }
+    const result = totals(data24);
 
     res.send(JSON.stringify(result));
   } catch(e) {
     throw e;
   }
 })
+
+const totals = (gunArchiveData) => {
+  let reportTotal = gunArchiveData.length;
+  var i=0;
+  let deathTotal = 0;
+  let injuryTotal = 0;
+  while(i < gunArchiveData.length) {
+    deathTotal += parseInt(gunArchiveData[i]['# Killed']);
+    injuryTotal += parseInt(gunArchiveData[i]['# Injured']);
+    i++;
+  }
+
+  const result = { "totalReports": reportTotal, "totalKilled":deathTotal, "totalInjured": injuryTotal }
+  return result;
+}
+
+
  
 
 module.exports = router;
