@@ -1,9 +1,10 @@
 var ig = require('instagram-scraping');
 var rwDenseCap = require('../runwayML/densecap');
 var rwAnimeConv = require('../runwayML/animeconvert');
-
+//webbtest
 exports.handleScrape = async(handle) => {
   let res = await ig.scrapeUserPage(handle);
+  console.log(res);
   return res;
 }
 
@@ -17,6 +18,7 @@ exports.handleFollowersScrape = async(handle) => {
   try {
     let res = await ig.scrapeUserPage(handle);  
     return res.user.edge_followed_by.count;
+    
   } catch(e) {
     return 0;
   }
