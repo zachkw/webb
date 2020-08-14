@@ -6,6 +6,7 @@ router.get('/', (req, res) => res.send('Hello IG World!'))
   
 router.get('/handle/:handle/open', async (req, res) => {
   try {
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     const result = await service.handleScrape(req.params.handle);
     res.send(result);
   } 
