@@ -1,4 +1,4 @@
-untime: nodejs12 # or nodejs10
+runtime: nodejs12 # or nodejs10
 
 instance_class: F2
 
