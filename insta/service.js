@@ -4,6 +4,7 @@ var rwAnimeConv = require('../runwayML/animeconvert');
 
 exports.handleScrape = async(handle) => {
   let res = await ig.scrapeUserPage(handle);
+  console.log(res);
   return res;
 }
 
