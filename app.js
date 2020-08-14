@@ -1,4 +1,5 @@
 const express = require('express')
+const serverless = require('serverless-http');
 
 const insta = require('./insta/routes')
 const google = require('./google/routes')
@@ -18,3 +19,5 @@ app.use('/guns', guns);
 app.use('/stocks', stocks);
 
 app.listen(PORT);
+
+module.exports.handler = serverless(app);
