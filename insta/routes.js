@@ -1,12 +1,10 @@
 var express = require('express')
 var router = express.Router()
 var service = require('./service')
-const request = require('request')
-const fixieRequest = request.defaults({'proxy': process.env.FIXIE_URL});
 
 router.get('/', (req, res) => res.send('Hello IG World!'))
   
-fixieRequest.get('/handle/:handle/open', async (req, res) => {
+router.get('/handle/:handle/open', async (req, res) => {
   try {
     const result = await service.handleScrape(req.params.handle);
     res.send(result);
@@ -16,7 +14,7 @@ fixieRequest.get('/handle/:handle/open', async (req, res) => {
   }
 });
 
-fixieRequest.get('/handle/:handle/text', async (req, res) => {
+router.get('/handle/:handle/text', async (req, res) => {
   try {
     const result = await service.handleTextScrape(req.params.handle);
     res.send(result);
@@ -27,7 +25,7 @@ fixieRequest.get('/handle/:handle/text', async (req, res) => {
 });
 
 
-fixieRequest.get('/handle/:handle/follower_count', async (req, res) => {
+router.get('/handle/:handle/follower_count', async (req, res) => {
   try {
     const result = await service.handleFollowersScrape(req.params.handle);
     res.send(JSON.stringify(result));
@@ -38,7 +36,7 @@ fixieRequest.get('/handle/:handle/follower_count', async (req, res) => {
 });
 
 
-fixieRequest.get('/hashtag/:hashtag/open', async (req, res) => {
+router.get('/hashtag/:hashtag/open', async (req, res) => {
   try {
     const result = await service.hashtagScrape(req.params.hashtag);
     res.send(result);
@@ -48,7 +46,7 @@ fixieRequest.get('/hashtag/:hashtag/open', async (req, res) => {
   }
 });
 
-fixieRequest.get('/densecap/:handle/profile', async (req, res) => {
+router.get('/densecap/:handle/profile', async (req, res) => {
   try {
     const result = await service.denseCapProfile(req.params.handle);
     res.send(result);
@@ -59,7 +57,7 @@ fixieRequest.get('/densecap/:handle/profile', async (req, res) => {
 });
 
 
-fixieRequest.get('/densecap/:handle/medias/:amount', async (req, res) => {
+router.get('/densecap/:handle/medias/:amount', async (req, res) => {
   try {
     const result = await service.denseCapMedias(req.params.handle, req.params.amount);
     res.send(result);
@@ -69,7 +67,7 @@ fixieRequest.get('/densecap/:handle/medias/:amount', async (req, res) => {
   }
 })
 
-fixieRequest.get('/anime/:handle/profile', async (req, res) => {
+router.get('/anime/:handle/profile', async (req, res) => {
   try {
     const result = await service.animeConvertProfile(req.params.handle, req.params.amount);
     res.send(result);
@@ -78,7 +76,7 @@ fixieRequest.get('/anime/:handle/profile', async (req, res) => {
   }
 })
 
-fixieRequest.get('/anime/:handle/medias/:amount', async (req, res) => {
+router.get('/anime/:handle/medias/:amount', async (req, res) => {
   try {
     const result = await service.animeConvertMedias(req.params.handle, req.params.amount);
     res.send(result);
